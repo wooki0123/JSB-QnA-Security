@@ -18,4 +18,9 @@ public class ArticleController {
         model.addAttribute("articleList", articleList);
         return "article_list";
     }
+
+    @GetMapping("/article/create")
+    public String create() {
+        return "article_form";
+    }
 }
