@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,5 +22,15 @@ public class ArticleService {
         article.setContent(content);
         article.setCreatedDate(LocalDateTime.now());
         articleRepository.save(article);
+    }
+
+    public Article getArticle(Integer id) {
+        Optional<Article> opArticle = this.articleRepository.findById(id);
+        if(opArticle.isPresent()) {
+            return opArticle.get();
+        }
+
+        System.out.println("게시글이 존재하지 않습니다.");
+        return null;
     }
 }
