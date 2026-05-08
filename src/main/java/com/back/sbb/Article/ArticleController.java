@@ -26,6 +26,7 @@ public class ArticleController {
     public String create() {
         return "article_form";
     }
+
     @PostMapping("/article/create")
     public String articleCreate(@RequestParam(value = "title") String title, @RequestParam(value = "content") String content) {
         this.articleService.create(title, content);
@@ -37,5 +38,17 @@ public class ArticleController {
         Article article = this.articleService.getArticle(id);
         model.addAttribute("article", article);
         return "article_detail";
+    }
+
+    @GetMapping("/article/modify/{id}")
+    public String modify(@PathVariable int id, Model model) {
+        model.addAttribute("article", articleService.getArticle(id));
+        return "article_modify";
+    }
+
+    @PostMapping("/article/modify/{id}")
+    public String modify(@PathVariable int id, String title, String content) {
+        articleService.modify(id, title, content);
+        return "redirect:/article/detail/" + id;
     }
 }

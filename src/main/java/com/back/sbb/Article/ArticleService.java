@@ -24,6 +24,13 @@ public class ArticleService {
         articleRepository.save(article);
     }
 
+    public void modify(int id, String title, String content) {
+        Article article = getArticle(id);
+        article.setTitle(title);
+        article.setContent(content);
+        articleRepository.save(article);
+    }
+
     public Article getArticle(Integer id) {
         Optional<Article> opArticle = this.articleRepository.findById(id);
         if(opArticle.isPresent()) {
