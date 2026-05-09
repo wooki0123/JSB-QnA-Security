@@ -16,4 +16,4 @@
         </tr>
     </tbody>
 </table>
-<a th:href="@{/article/create}">등록하기</a>
+<a th:if="${#authentication != null and #authentication.name != 'anonymousUser'}" th:href="@{/article/create}">등록하기</a>
